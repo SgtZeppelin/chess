@@ -57,4 +57,16 @@ public class Field extends JButton {
     public int getYCord() {
         return yCord;
     }
+    
+    public void highlightOn() {
+        this.setBackground(Color.red);
+    }
+    
+    public void highlightOff() {
+        if ( this.isBlack ) {
+            this.setBackground(new Color(76, 175, 80));
+        } else {
+            this.setBackground(new Color(139, 195, 74));
+        }
+    }
 }
