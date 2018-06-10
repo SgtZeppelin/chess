@@ -54,7 +54,7 @@ public abstract class Figure {
         field.setIcon(null);
     }
     
-    abstract boolean validateMove( Field field );
+    abstract boolean isMoveValid( Field field );
     
     abstract boolean checkTarget( Field field );
     

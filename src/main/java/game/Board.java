@@ -161,7 +161,7 @@ public class Board extends JPanel {
                 oldField = field;
                 isSelected = true;
                 
-            } else if ( isSelected && oldField.getFigure().validateMove(field) /*&& ( field.getFigure().getIsBlack() != isWhitesTurn ) */) {
+            } else if ( isSelected && oldField.getFigure().isMoveValid(field) /*&& ( field.getFigure().getIsBlack() != isWhitesTurn ) */) {
                 System.out.println( "OLDfield: " + oldField.getFigure().getImagePath() );
                 oldField.getFigure().removeTexture();
                 field.setFigure(oldField.getFigure());

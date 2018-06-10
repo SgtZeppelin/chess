@@ -24,7 +24,7 @@ public class Rook extends Figure {
     }
 
     @Override
-    public boolean validateMove( Field field ) {
+    public boolean isMoveValid( Field field ) {
         if ( this.checkTarget( field ) ) {
             return this.checkCollision( field );
         }
