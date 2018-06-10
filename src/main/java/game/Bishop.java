@@ -74,70 +74,56 @@ public class Bishop extends Figure {
 
         Field[][] arrayField = this.getField().getBoard().getArrayChessBoard();
 
-        if (lastY < newY) {
-            if (lastX < newX) {
-
-                if ( (collisionField = this.compactScanFieldLoopSubtract(lastY, newY, lastX, newX, arrayField)) != null) {
-                    collisionField.highlightOn();
-                    return false;
+        if ( lastY > newY ) {
+            if ( lastX > newX ) {
+                int x = lastX -1;
+                for ( int y = lastY-1; y > newY; y-- ) {
+                        Field localField = arrayField[x][y];
+                        if ( localField.getFigure() != null ) {
+                            localField.highlightOn();
+                            collisionField = localField;
+                            return false;
+                        }
+                        x--;
                 }
             } else {
-
-                if ( (collisionField = this.compactScanFieldLoopSubtract(lastY, newY, newX, lastX, arrayField)) != null) {
-                    collisionField.highlightOn();
-                    return false;
+                int x = lastX +1;
+                for ( int y = lastY -1; y > newY; y-- ) {
+                        Field localField = arrayField[x][y];
+                        if ( localField.getFigure() != null ) {
+                            localField.highlightOn();
+                            System.out.println(x + " , " + y);
+                            collisionField = localField;
+                            return false;
+                        }
+                        x++;
                 }
-            }
+            } 
         } else {
-            if (lastX < newX) {
-
-                if ( (collisionField = this.compactScanFieldLoopAdd(newY, lastY, lastX, newX, arrayField)) != null) {
-                    collisionField.highlightOn();
-                    return false;
+            if ( lastX > newX ) {
+                int x = lastX -1;
+                for ( int y = lastY +1; y < newY; y++ ) {
+                        Field localField = arrayField[x][y];
+                        if ( localField.getFigure() != null ) {
+                            localField.highlightOn();
+                            collisionField = localField;
+                            return false;
+                        }
+                        x--;
                 }
             } else {
-
-                if ( (collisionField = this.compactScanFieldLoopAdd(newY, lastY, newX, lastX, arrayField)) != null) {
-                    collisionField.highlightOn();
-                    return false;
+                int x = lastX +1;
+                for ( int y = lastY +1; y < newY; y++ ) {
+                        Field localField = arrayField[x][y];
+                        if ( localField.getFigure() != null ) {
+                            localField.highlightOn();
+                            collisionField = localField;
+                            return false;
+                        }
+                        x++;
                 }
             }
         }
         return true;
     }
-
-    private Field compactScanFieldLoopSubtract(int endY, int counterY, int counterX, int endX, Field[][] arrayField) {
-
-        for (int y = counterY - 1; y < endY; y++) {
-            for (int x = counterX + 1; x < endX; x++) {
-
-                Field localField = arrayField[x][y];
-                if (localField.getFigure() != null) {
-
-                    return arrayField[x][y];
-                }
-            }
-        }
-
-        return null;
-
-    }
-    
-    private Field compactScanFieldLoopAdd(int counterY, int endY, int counterX, int endX, Field[][] arrayField) {
-
-        for (int y = counterY + 1; y < endY; y++) {
-            for (int x = counterX + 1; x < endX; x++) {
-
-                Field localField = arrayField[x][y];
-                if (localField.getFigure() != null) {
-
-                    return arrayField[x][y];
-                }
-            }
-        }
-
-        return null;
-
-    }
-
-}
+ }
