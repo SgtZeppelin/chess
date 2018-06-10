@@ -11,6 +11,8 @@ package game;
  */
 public class Queen extends Figure {
 
+    boolean isOdd;
+
     public Queen(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
         if (black) {
@@ -22,46 +24,158 @@ public class Queen extends Figure {
     }
 
     @Override
-    public boolean isMoveValid( Field field ) {
-        
-        if ( this.checkTarget( field ) ) {
-            return this.checkCollision( field );
+    public boolean isMoveValid(Field field) {
+
+        if (this.checkTarget(field)) {
+            return this.checkCollision(field);
         }
         return false;
     }
-    
+
     @Override
-    protected boolean checkTarget( Field field ) {
+    protected boolean checkTarget(Field field) {
         int lastX = this.field.getXCord();
         int lastY = this.field.getYCord();
         int newX = field.getXCord();
         int newY = field.getYCord();
         int resultX;
         int resultY;
-        
-        if( lastX < newX ) {
+
+        if (lastX < newX) {
             resultX = newX - lastX;
         } else {
             resultX = lastX - newX;
         }
-        
-        if( lastY < newY ) {
+
+        if (lastY < newY) {
             resultY = newY - lastY;
         } else {
             resultY = lastY - newY;
         }
-        
+
         //System.out.println( "oldX: " + oldX + ", oldY: " + oldY + ", newX: " + newX + ", newY : " + newY );
-        
-        if ( resultX  <= 1 && resultY <= 1 && resultX + resultY != 0 ) {
+        if ((lastX == newX && lastY != newY) || (lastY == newY && lastX != newX)) {
+            isOdd = false;
+            return true;
+        }
+
+        if (resultX == resultY && resultX + resultY != 0) {
+            isOdd = true;
             return true;
         }
         return false;
     }
-    
+
     @Override
-    protected boolean checkCollision( Field field ) {
+    protected boolean checkCollision(Field field) {
+        int lastX = this.field.getXCord();
+        int lastY = this.field.getYCord();
+        int newX = field.getXCord();
+        int newY = field.getYCord();
+
+        Field[][] arrayField = this.getField().getBoard().getArrayChessBoard();
+
+        if (isOdd) {
+            if (lastY < newY) {
+                if (lastX < newX) {
+
+                    for (int y = lastY + 1; y < newY; y++) {
+                        for (int x = lastX + 1; x < newX; x++) {
+
+                            Field localField = arrayField[x][y];
+                            if (localField.getFigure() != null) {
+                                System.out.println("Collision1");
+
+                                return false;
+                            }
+                        }
+                    }
+                } else {
+                    for (int y = lastY + 1; y < newY; y++) {
+                        for (int x = newX + 1; x < lastX; x++) {
+
+                            Field localField = arrayField[x][y];
+                            if (localField.getFigure() != null) {
+                                System.out.println("Collision1");
+
+                                return false;
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (lastX < newX) {
+
+                    for (int y = newY + 1; y < lastY; y++) {
+                        for (int x = lastX + 1; x < newX; x++) {
+
+                            Field localField = arrayField[x][y];
+                            if (localField.getFigure() != null) {
+                                System.out.println("Collision1");
+
+                                return false;
+                            }
+                        }
+                    }
+                } else {
+                    for (int y = newY + 1; y < lastY; y++) {
+                        for (int x = newX + 1; x < lastX; x++) {
+
+                            Field localField = arrayField[x][y];
+                            if (localField.getFigure() != null) {
+                                System.out.println("Collision1");
+
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+        } else {
+
+            if (lastX == newX) {
+                if (lastY < newY) {
+                    for (int i = lastY + 1; i < newY; i++) {
+                        Field localField = arrayField[lastX][i];
+                        System.out.println("err1");
+                        if (localField.getFigure() != null) {
+                            System.out.println("Collision1");
+                            return false;
+                        }
+                    }
+                } else {
+                    for (int i = newY + 1; i < lastY; i++) {
+                        Field localField = arrayField[lastX][i];
+                        System.out.println("err2");
+                        if (localField.getFigure() != null) {
+                            System.out.println("Collision2");
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                if (lastX < newX) {
+                    for (int i = lastX + 1; i < newX; i++) {
+                        Field localField = arrayField[i][lastY];
+                        if (localField.getFigure() != null) {
+                            System.out.println("Collision3");
+                            return false;
+                        }
+                    }
+                } else {
+                    for (int i = newX + 1; i < lastX; i++) {
+                        Field localField = arrayField[i][lastY];
+                        if (localField.getFigure() != null) {
+                            System.out.println("Collision4");
+                            return false;
+                        }
+                    }
+
+                }
+            }
+
+        }
         return true;
     }
-
 }

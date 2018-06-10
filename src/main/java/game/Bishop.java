@@ -74,7 +74,6 @@ public class Bishop extends Figure {
                     for ( int x = lastX +1; x < newX; x++) {
                         
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
                             System.out.println( "Collision1" );
      
@@ -87,7 +86,6 @@ public class Bishop extends Figure {
                     for ( int x = newX +1; x < lastX; x++) {
                         
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
                             System.out.println( "Collision1" );
      
@@ -103,7 +101,6 @@ public class Bishop extends Figure {
                     for ( int x = lastX +1; x < newX; x++) {
                         
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
                             System.out.println( "Collision1" );
      
@@ -116,7 +113,6 @@ public class Bishop extends Figure {
                     for ( int x = newX +1; x < lastX; x++) {
                         
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
                             System.out.println( "Collision1" );
      
