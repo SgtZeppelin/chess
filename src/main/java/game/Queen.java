@@ -111,8 +111,6 @@ public class Queen extends Figure {
 
                             Field localField = arrayField[x][y];
                             if (localField.getFigure() != null) {
-                                System.out.println("Collision1");
-
                                 return false;
                             }
                         }
@@ -123,8 +121,6 @@ public class Queen extends Figure {
 
                             Field localField = arrayField[x][y];
                             if (localField.getFigure() != null) {
-                                System.out.println("Collision1");
-
                                 return false;
                             }
                         }
@@ -140,7 +136,6 @@ public class Queen extends Figure {
                         Field localField = arrayField[lastX][i];
                         System.out.println("err1");
                         if (localField.getFigure() != null) {
-                            System.out.println("Collision1");
                             return false;
                         }
                     }
@@ -149,7 +144,6 @@ public class Queen extends Figure {
                         Field localField = arrayField[lastX][i];
                         System.out.println("err2");
                         if (localField.getFigure() != null) {
-                            System.out.println("Collision2");
                             return false;
                         }
                     }
@@ -159,7 +153,6 @@ public class Queen extends Figure {
                     for (int i = lastX + 1; i < newX; i++) {
                         Field localField = arrayField[i][lastY];
                         if (localField.getFigure() != null) {
-                            System.out.println("Collision3");
                             return false;
                         }
                     }
@@ -167,7 +160,6 @@ public class Queen extends Figure {
                     for (int i = newX + 1; i < lastX; i++) {
                         Field localField = arrayField[i][lastY];
                         if (localField.getFigure() != null) {
-                            System.out.println("Collision4");
                             return false;
                         }
                     }

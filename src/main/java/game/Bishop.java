@@ -10,8 +10,6 @@ package game;
  * @author gersc
  */
 public class Bishop extends Figure {
-    
-    Field collisionField;
 
     public Bishop(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
@@ -25,7 +23,11 @@ public class Bishop extends Figure {
 
     @Override
     public boolean isMoveValid(Field field) {
-
+        
+        /*if ( collisionField != null ) {
+            collisionField.HighlightOff();
+        }
+*/
         if (this.checkTarget(field)) {
             return this.checkCollision(field);
         }
@@ -62,11 +64,6 @@ public class Bishop extends Figure {
     @Override
     protected boolean checkCollision(Field field) {
         
-        
-        if ( collisionField != null ) {
-            collisionField.highlightOff();
-        }
-
         int lastX = this.field.getXCord();
         int lastY = this.field.getYCord();
         int newX = field.getXCord();
@@ -80,8 +77,6 @@ public class Bishop extends Figure {
                 for ( int y = lastY-1; y > newY; y-- ) {
                         Field localField = arrayField[x][y];
                         if ( localField.getFigure() != null ) {
-                            localField.highlightOn();
-                            collisionField = localField;
                             return false;
                         }
                         x--;
@@ -91,9 +86,6 @@ public class Bishop extends Figure {
                 for ( int y = lastY -1; y > newY; y-- ) {
                         Field localField = arrayField[x][y];
                         if ( localField.getFigure() != null ) {
-                            localField.highlightOn();
-                            System.out.println(x + " , " + y);
-                            collisionField = localField;
                             return false;
                         }
                         x++;
@@ -105,8 +97,6 @@ public class Bishop extends Figure {
                 for ( int y = lastY +1; y < newY; y++ ) {
                         Field localField = arrayField[x][y];
                         if ( localField.getFigure() != null ) {
-                            localField.highlightOn();
-                            collisionField = localField;
                             return false;
                         }
                         x--;
@@ -116,8 +106,6 @@ public class Bishop extends Figure {
                 for ( int y = lastY +1; y < newY; y++ ) {
                         Field localField = arrayField[x][y];
                         if ( localField.getFigure() != null ) {
-                            localField.highlightOn();
-                            collisionField = localField;
                             return false;
                         }
                         x++;

@@ -17,7 +17,7 @@ public abstract class Figure {
     public int oldY;
     public String imagePath;
     public boolean isBlack;
-  
+    public Field collisionField;
     public Field field;
     
     public Figure( int x, int y, boolean black, Field field ) {
@@ -52,6 +52,19 @@ public abstract class Figure {
     
     public void removeTexture() {
         field.setIcon(null);
+    }
+    
+    public void removeCollisionMarker() {
+        if ( collisionField != null ) {
+            collisionField.setStandartColor();
+        }
+    }
+    
+    public void markCollisionField( Field field ) {
+        if ( field.getFigure().getIsBlack() != this.isBlack ) {
+            field.collisionHighlightOn();
+            collisionField = field;
+        }
     }
     
     abstract boolean isMoveValid( Field field );

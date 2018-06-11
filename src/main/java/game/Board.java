@@ -7,7 +7,8 @@ package game;
 
 import java.awt.Color;
 import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 
 /**
@@ -17,13 +18,15 @@ import javax.swing.*;
 public class Board extends JPanel {
 
     private Field[][] arrayBoard;
-    
+
+    private ArrayList<Figure> destroyedFiguresList;
     Field field = null;
     Field oldField = null;
     int saveYCoord;
     int saveXCoord;
     boolean isWhitesTurn = true;
     InformationBoard infoBoard;
+    Field collisionField;
 
     private boolean isSelected = false;
 
@@ -33,28 +36,28 @@ public class Board extends JPanel {
     }
 
     private void initBoard() {
-        
+
         this.setSize(800, 800);
 
         BoardListener boardlistener = new BoardListener();
         arrayBoard = new Field[8][8];
+        destroyedFiguresList = new ArrayList<>();
         this.setLayout(new java.awt.GridLayout(8, 8));
         boolean black = true;
 
         for (int yCord = 0; yCord < arrayBoard.length; yCord++) {
             for (int xCord = 0; xCord < arrayBoard.length; xCord++) {
 
-                Field field = new Field(this, black, xCord, yCord );
+                Field field = new Field(this, black, xCord, yCord);
 
                 field.addActionListener(boardlistener);
                 field.setBorder(null);
                 arrayBoard[xCord][yCord] = field;
+                
+                
 
-                if (black) {
-                    field.setBackground(new Color(76, 175, 80));
-                } else {
-                    field.setBackground(new Color(139, 195, 74));
-                }
+                field.setStandartColor();
+                
 
                 if (yCord == 1) {
                     Pawn pawn = new Pawn(xCord, yCord, true, field);
@@ -64,7 +67,7 @@ public class Board extends JPanel {
                     switch (xCord) {
                         case 0:
                         case 7:
-                            Rook rook = new Rook(xCord, yCord, true, field);      
+                            Rook rook = new Rook(xCord, yCord, true, field);
                             field.setFigure(rook);
                             break;
                         case 1:
@@ -136,7 +139,6 @@ public class Board extends JPanel {
 
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
-
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
                 for (int xCoord = 0; xCoord < arrayBoard.length; xCoord++) {
                     if (event.getSource() == arrayBoard[xCoord][yCoord]) {
@@ -144,32 +146,68 @@ public class Board extends JPanel {
                         field = arrayBoard[xCoord][yCoord];
                         saveXCoord = xCoord;
                         saveYCoord = yCoord;
-                        System.out.println( "X: " + xCoord + ", Y: " + yCoord );
+                        System.out.println("X: " + xCoord + ", Y: " + yCoord);
                         break;
                     }
                 }
 
             }
-            
+
             if (isWhitesTurn) {
-                System.out.println( "It's White's turn!" );
+                System.out.println("It's White's turn!");
             } else {
-                System.out.println( "It's Black's turn!" );
+                System.out.println("It's Black's turn!");
             }
-            
-            if (!isSelected && field.getFigure() != null && isWhitesTurn != field.getFigure().getIsBlack()) {
+
+            if (field.getFigure() != null && isWhitesTurn != field.getFigure().getIsBlack()) {
+                this.removeMarker();
                 oldField = field;
                 isSelected = true;
-                
-            } else if ( isSelected && oldField.getFigure().isMoveValid(field) /*&& ( field.getFigure().getIsBlack() != isWhitesTurn ) */) {
-                System.out.println( "OLDfield: " + oldField.getFigure().getImagePath() );
+
+                for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
+                    for (int xCoord = 0; xCoord < arrayBoard.length; xCoord++) {
+                        Field localField = arrayBoard[xCoord][yCoord];
+                        if (field.getFigure().isMoveValid(localField)) {
+                            if (localField.getFigure() == null) {
+                                localField.possibleHighlightOn();
+                            } else if (localField.getFigure().getIsBlack() != field.getFigure().getIsBlack()) {
+                                localField.collisionHighlightOn();
+                            }
+                        }
+                    }
+                }
+                oldField.selectionHighlightOn();
+
+            } else if (isSelected && oldField.getFigure().isMoveValid(field) /*&& ( field.getFigure().getIsBlack() != isWhitesTurn ) */) {
+                this.removeMarker();
+                if (field.getFigure() != null) {
+                    destroyedFiguresList.add(field.getFigure());
+                }
                 oldField.getFigure().removeTexture();
+                if (oldField.getFigure() instanceof Pawn) {
+                    Pawn localPawn = (Pawn) oldField.getFigure();
+                    localPawn.setWasMoved(true);
+                }
+
                 field.setFigure(oldField.getFigure());
-                System.out.println( "field: " + field.getFigure().getImagePath() );
                 oldField.removeFigure();
                 isSelected = false;
                 isWhitesTurn = !isWhitesTurn;
+                System.out.println(Arrays.toString(destroyedFiguresList.toArray()));
             }
+        }
+
+        private void removeMarker() {
+            for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
+                for (int xCoord = 0; xCoord < arrayBoard.length; xCoord++) {
+                    Field localField = arrayBoard[xCoord][yCoord];
+
+                    localField.setStandartColor();
+                    
+
+                }
+            }
+
         }
 
     }
@@ -177,7 +215,4 @@ public class Board extends JPanel {
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
     }
-    
-    
-
 }

@@ -58,15 +58,47 @@ public class Field extends JButton {
         return yCord;
     }
     
-    public void highlightOn() {
-        this.setBackground(Color.red);
+    public boolean getIsBlack() {
+        return isBlack;
     }
     
-    public void highlightOff() {
-        if ( this.isBlack ) {
-            this.setBackground(new Color(76, 175, 80));
+    public void collisionHighlightOn() {
+        if ( false ) {
+            this.setBackground(new Color(198, 40, 40));
+        } else {
+            this.setBackground(new Color(244, 67, 54));
+        }
+    }
+    
+    public void selectionHighlightOn() {
+        if ( false ) {
+            this.setBackground(new Color(2, 119, 189));
+        } else {
+            this.setBackground(new Color(3, 169, 244));
+        }
+    }
+    
+    public void possibleHighlightOn() {
+        if ( false ) {
+            this.setBackground(new Color(249, 168, 37));
         } else {
             this.setBackground(new Color(139, 195, 74));
         }
+    }
+    
+    public void setStandartColor() {
+        
+        if ( this.isBlack ) {
+            this.setBackground(new Color(97, 97, 97));
+        } else {
+            this.setBackground(new Color(158, 158, 158));
+        }
+        
+        
+        /*if ( this.isBlack ) {
+            this.setBackground(new Color(76, 175, 80));
+        } else {
+            this.setBackground(new Color(139, 195, 74));
+        }*/
     }
 }

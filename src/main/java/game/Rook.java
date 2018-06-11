@@ -60,18 +60,14 @@ public class Rook extends Figure {
             if ( lastY < newY ) {
                 for ( int i = lastY +1; i < newY; i++ ) {
                     Field localField = arrayField[lastX][i];
-                    System.out.println("err1");
                     if ( localField.getFigure() != null ) {
-                        System.out.println( "Collision1" );
                         return false;
                     }
                 }
             } else {
-                for ( int i = newY +1; i < lastY; i++ ) {
+                for ( int i = lastY -1; i > newY; i-- ) {
                     Field localField = arrayField[lastX][i];
-                    System.out.println("err2");
                     if ( localField.getFigure() != null ) {
-                        System.out.println( "Collision2" );
                         return false;
                     }
                 }
@@ -81,15 +77,13 @@ public class Rook extends Figure {
                 for ( int i = lastX +1 ; i < newX; i++ ) {
                     Field localField = arrayField[i][lastY];
                     if ( localField.getFigure() != null ) {
-                        System.out.println( "Collision3" );
                         return false;
                     }
                 }
             } else {
-                for ( int i = newX +1; i < lastX; i++ ) {
+                for ( int i = lastX -1; i > newX; i-- ) {
                     Field localField = arrayField[i][lastY];
                     if ( localField.getFigure() != null ) {
-                        System.out.println( "Collision4" );
                         return false;
                     }
                 }
