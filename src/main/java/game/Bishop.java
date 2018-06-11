@@ -22,112 +22,96 @@ public class Bishop extends Figure {
     }
 
     @Override
-    public boolean isMoveValid( Field field ) {
+    public boolean isMoveValid(Field field) {
         
-        if ( this.checkTarget( field ) ) {
-            return this.checkCollision( field );
+        /*if ( collisionField != null ) {
+            collisionField.HighlightOff();
+        }
+*/
+        if (this.checkTarget(field)) {
+            return this.checkCollision(field);
         }
         return false;
     }
-    
+
     @Override
-    protected boolean checkTarget( Field field ) {
+    protected boolean checkTarget(Field field) {
         int lastX = this.field.getXCord();
         int lastY = this.field.getYCord();
         int newX = field.getXCord();
         int newY = field.getYCord();
         int resultX;
         int resultY;
-        
-        if( lastX < newX ) {
+
+        if (lastX < newX) {
             resultX = newX - lastX;
         } else {
             resultX = lastX - newX;
         }
-        
-        if( lastY < newY ) {
+
+        if (lastY < newY) {
             resultY = newY - lastY;
         } else {
             resultY = lastY - newY;
         }
-        
-        if ( resultX  == resultY && resultX + resultY != 0 ) {
+
+        if (resultX == resultY) {
             return true;
         }
         return false;
     }
-    
+
     @Override
-    protected boolean checkCollision( Field field ) {
+    protected boolean checkCollision(Field field) {
         
         int lastX = this.field.getXCord();
         int lastY = this.field.getYCord();
         int newX = field.getXCord();
         int newY = field.getYCord();
-        
+
         Field[][] arrayField = this.getField().getBoard().getArrayChessBoard();
-        
-        if ( lastY < newY ) {
-            if ( lastX < newX ) {
-                
-                for ( int y = lastY +1; y < newY; y++ ) {
-                    for ( int x = lastX +1; x < newX; x++) {
-                        
+
+        if ( lastY > newY ) {
+            if ( lastX > newX ) {
+                int x = lastX -1;
+                for ( int y = lastY-1; y > newY; y-- ) {
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
-                            System.out.println( "Collision1" );
-     
                             return false;
                         }
-                    }
+                        x--;
                 }
             } else {
-                for ( int y = lastY +1; y < newY; y++ ) {
-                    for ( int x = newX +1; x < lastX; x++) {
-                        
+                int x = lastX +1;
+                for ( int y = lastY -1; y > newY; y-- ) {
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
-                            System.out.println( "Collision1" );
-     
                             return false;
                         }
-                    }
+                        x++;
                 }
-            }
+            } 
         } else {
-            if ( lastX < newX ) {
-                
-                for ( int y = newY +1; y < lastY; y++ ) {
-                    for ( int x = lastX +1; x < newX; x++) {
-                        
+            if ( lastX > newX ) {
+                int x = lastX -1;
+                for ( int y = lastY +1; y < newY; y++ ) {
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
-                            System.out.println( "Collision1" );
-     
                             return false;
                         }
-                    }
+                        x--;
                 }
             } else {
-                for ( int y = newY +1; y < lastY; y++ ) {
-                    for ( int x = newX +1; x < lastX; x++) {
-                        
+                int x = lastX +1;
+                for ( int y = lastY +1; y < newY; y++ ) {
                         Field localField = arrayField[x][y];
-                        System.out.println("err1");
                         if ( localField.getFigure() != null ) {
-                            System.out.println( "Collision1" );
-     
                             return false;
                         }
-                    }
+                        x++;
                 }
             }
         }
-        
         return true;
     }
-
-}
+ }

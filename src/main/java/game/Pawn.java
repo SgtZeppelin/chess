@@ -11,7 +11,7 @@ package game;
  */
 public class Pawn extends Figure {
     
-    boolean moved = false;
+    private boolean wasMoved = false;
     
     public Pawn( int x, int y, boolean black, Field field ) {
         super( x, y, black, field );
@@ -21,6 +21,15 @@ public class Pawn extends Figure {
             imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\pawn_white.png";
         }
     }
+    
+    public void setWasMoved( boolean wasMoved ) {
+        this.wasMoved = wasMoved;
+    }
+
+    public boolean isWasMoved() {
+        return wasMoved;
+    }
+    
     
     @Override
     public boolean isMoveValid( Field field ) {
@@ -42,24 +51,22 @@ public class Pawn extends Figure {
         int resultX = lastX - newX;
         
         if( isBlack ) {
-            if ( moved ) {
+            if ( wasMoved ) {
                 if ( (newY - lastY) == 1 && resultX == 0 ) {
                     return true;
                 }
             } else {
                 if ( (newY - lastY) <= 2 && (newY - lastY) > 0 && resultX == 0 ){
-                    moved = true;
                     return true;
                 }
             }
         } else {
-            if ( moved ) {
+            if ( wasMoved ) {
                 if ( (lastY - newY) == 1 && resultX == 0 ){
                     return true;
                 }
             } else {
                 if ( (lastY - newY) <= 2 && (lastY - newY) > 0  && resultX == 0 ){
-                    moved = true;
                     return true;
                 }
             }
@@ -70,7 +77,27 @@ public class Pawn extends Figure {
     
     @Override
     protected boolean checkCollision( Field field ) {
+        int lastX = this.field.getXCord();
+        int lastY = this.field.getYCord();
+        int newY = field.getYCord();
+        
+        if ( (newY - lastY == 2) || (newY - lastY == -2) ) {
+            Field[][] arrayField = this.getField().getBoard().getArrayChessBoard();
+            if ( isBlack ) {
+                Field localField = arrayField[lastX][lastY+1];
+                if ( localField.getFigure() != null ) {
+                    return false;
+                }
+            } else {
+                Field localField = arrayField[lastX][lastY-1];
+                if ( localField.getFigure() != null ) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
+    
+    
     
 }

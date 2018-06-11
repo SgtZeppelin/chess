@@ -11,7 +11,7 @@ package game;
  */
 public class Knight extends Figure {
 
-    public Knight(int x, int y, boolean black, Field field) {
+    public Knight(int x, int y, boolean black, Field field ) {
         super(x, y, black, field);
         if (black) {
             imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\knight_black.png";
