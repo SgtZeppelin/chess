@@ -16,21 +16,12 @@ public class Rook extends Figure {
     public Rook(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
         if (black) {
-            imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\rook_black.png";
+            imagePath = "/rook_black.png";
 
         } else {
-            imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\rook_white.png";
+            imagePath = "/rook_white.png";
         }
     }
-
-    @Override
-    public boolean isMoveValid( Field field ) {
-        if ( this.checkTarget( field ) ) {
-            return this.checkCollision( field );
-        }
-        return false;
-    }
-    
     @Override
     protected boolean checkTarget( Field field ) {
         
@@ -72,7 +63,7 @@ public class Rook extends Figure {
                     }
                 }
             }
-        } else {
+        } else if ( lastY == newY ) {
             if ( lastX < newX ) {
                 for ( int i = lastX +1 ; i < newX; i++ ) {
                     Field localField = arrayField[i][lastY];
@@ -90,7 +81,6 @@ public class Rook extends Figure {
             }
             
         }
-        System.out.println( true );
         return true;
     }
 

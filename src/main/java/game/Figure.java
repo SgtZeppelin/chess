@@ -47,7 +47,11 @@ public abstract class Figure {
     }
     
     public void setTexture() {
-        field.setIcon(new ImageIcon(imagePath));
+        try {
+            field.setIcon(new ImageIcon(getClass().getResource(imagePath)));
+        } catch (NullPointerException e) {
+            System.out.println("Bild nicht gefunden");
+        }
     }
     
     public void removeTexture() {
@@ -67,8 +71,27 @@ public abstract class Figure {
         }
     }
     
-    abstract boolean isMoveValid( Field field );
+    public boolean isMovePossible( Field field ) {
+        if (this.checkTarget(field) && field != this.field ) {
+            if ( field.getFigure() != null ) {
+                if (field.getFigure().getIsBlack() != this.getIsBlack()) {
+                    return this.checkCollision(field);
+                }
+            } else {
+                return this.checkCollision(field);
+            }
+               
+        }
+        return false;
+    }
     
+    public boolean isMoveValid( Field field ) {
+        if (this.checkTarget(field) && !(field.getFigure() instanceof King) ) {
+                return this.checkCollision(field);
+        }
+        return false;
+    }
+  
     abstract boolean checkTarget( Field field );
     
     abstract boolean checkCollision( Field field );

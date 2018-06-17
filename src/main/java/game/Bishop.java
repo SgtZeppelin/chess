@@ -14,25 +14,13 @@ public class Bishop extends Figure {
     public Bishop(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
         if (black) {
-            imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\bishop_black.png";
+            imagePath = "/bishop_black.png";
 
         } else {
-            imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\bishop_white.png";
+            imagePath = "/bishop_white.png";
         }
     }
 
-    @Override
-    public boolean isMoveValid(Field field) {
-        
-        /*if ( collisionField != null ) {
-            collisionField.HighlightOff();
-        }
-*/
-        if (this.checkTarget(field)) {
-            return this.checkCollision(field);
-        }
-        return false;
-    }
 
     @Override
     protected boolean checkTarget(Field field) {

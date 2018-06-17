@@ -17,6 +17,8 @@ import javax.swing.JButton;
 public class Field extends JButton {
     
     private boolean isBlack;
+    private boolean checkedByBlack = false;
+    private boolean checkedByWhite = false;
     private Figure figure = null;
     private Board board;
     private int xCord;
@@ -61,6 +63,24 @@ public class Field extends JButton {
     public boolean getIsBlack() {
         return isBlack;
     }
+
+    public void setCheckedByBlack(boolean checkedByBlack) {
+        this.checkedByBlack = checkedByBlack;
+    }
+
+    public void setCheckedByWhite(boolean checkedByWhite) {
+        this.checkedByWhite = checkedByWhite;
+    }
+
+    public boolean isCheckedByBlack() {
+        return checkedByBlack;
+    }
+
+    public boolean isCheckedByWhite() {
+        return checkedByWhite;
+    }
+    
+    
     
     public void collisionHighlightOn() {
         if ( false ) {
@@ -83,6 +103,14 @@ public class Field extends JButton {
             this.setBackground(new Color(249, 168, 37));
         } else {
             this.setBackground(new Color(139, 195, 74));
+        }
+    }
+    
+    public void checkHighlightOn() {
+        if ( false ) {
+            this.setBackground(new Color(249, 168, 37));
+        } else {
+            this.setBackground(new Color(255, 193, 7));
         }
     }
     

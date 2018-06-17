@@ -14,21 +14,13 @@ public class Knight extends Figure {
     public Knight(int x, int y, boolean black, Field field ) {
         super(x, y, black, field);
         if (black) {
-            imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\knight_black.png";
+            imagePath = "/knight_black.png";
 
         } else {
-            imagePath = "C:\\Users\\gersc\\Desktop\\NetBeansProjects\\ideal-winner\\chess_game\\src\\main\\java\\game\\knight_white.png";
+            imagePath = "/knight_white.png";
         }
     }
 
-    @Override
-    public boolean isMoveValid( Field field ) {
-        
-        if ( this.checkTarget( field ) ) {
-            return this.checkCollision( field );
-        }
-        return false;
-    }
     
     @Override
     protected boolean checkTarget( Field field ) {
@@ -51,7 +43,6 @@ public class Knight extends Figure {
             resultY = lastY - newY;
         }
         
-        //System.out.println( "oldX: " + oldX + ", oldY: " + oldY + ", newX: " + newX + ", newY : " + newY );
         if ( (resultX == 2 && resultY == 1) || resultX == 1 && resultY == 2) {
             return true;
         }
