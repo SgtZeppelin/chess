@@ -9,7 +9,7 @@ package game;
  *
  * @author gersc
  */
-public class Knight extends Figure {
+public class Knight extends Figure implements java.io.Serializable {
 
     public Knight(int x, int y, boolean black, Field field ) {
         super(x, y, black, field);
@@ -23,11 +23,7 @@ public class Knight extends Figure {
 
     
     @Override
-    protected boolean checkTarget( Field field ) {
-        int lastX = this.field.getXCord();
-        int lastY = this.field.getYCord();
-        int newX = field.getXCord();
-        int newY = field.getYCord();
+    protected boolean checkTarget(int lastX, int newX, int lastY, int newY) {
         int resultX;
         int resultY;
         
@@ -50,7 +46,7 @@ public class Knight extends Figure {
     }
     
     @Override
-    protected boolean checkCollision( Field field ) {
+    protected boolean checkCollision(int lastX, int newX, int lastY, int newY) {
         return true;
     }
 

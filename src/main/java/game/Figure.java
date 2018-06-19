@@ -72,13 +72,17 @@ public abstract class Figure {
     }
     
     public boolean isMovePossible( Field field ) {
-        if (this.checkTarget(field) && field != this.field ) {
+        int lastX = this.field.getXCord();
+        int lastY = this.field.getYCord();
+        int newX = field.getXCord();
+        int newY = field.getYCord();
+        if (this.checkTarget(lastX, newX, lastY, newY) && field != this.field ) {
             if ( field.getFigure() != null ) {
                 if (field.getFigure().getIsBlack() != this.getIsBlack()) {
-                    return this.checkCollision(field);
+                    return this.checkCollision(lastX, newX, lastY, newY);
                 }
             } else {
-                return this.checkCollision(field);
+                return this.checkCollision(lastX, newX, lastY, newY);
             }
                
         }
@@ -86,14 +90,19 @@ public abstract class Figure {
     }
     
     public boolean isMoveValid( Field field ) {
-        if (this.checkTarget(field) && !(field.getFigure() instanceof King) ) {
-                return this.checkCollision(field);
+        int lastX = this.field.getXCord();
+        int lastY = this.field.getYCord();
+        int newX = field.getXCord();
+        int newY = field.getYCord();
+        
+        if (this.checkTarget(lastX, newX, lastY, newY) && !(field.getFigure() instanceof King) ) {
+                return this.checkCollision(lastX, newX, lastY, newY);
         }
         return false;
     }
-  
-    abstract boolean checkTarget( Field field );
+
+    abstract boolean checkTarget( int lastX, int newX, int lastY, int newY );
     
-    abstract boolean checkCollision( Field field );
+    abstract boolean checkCollision( int lastX, int newX, int lastY, int newY );
     
 }

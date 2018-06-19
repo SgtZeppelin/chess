@@ -6,6 +6,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +19,7 @@ import javax.swing.*;
 public class Board extends JPanel {
 
     private Field[][] arrayBoard;
-
+    private Figure[][] virtualBoard;
     private ArrayList<Figure> destroyedFiguresList;
     private ArrayList<Figure> whiteFiguresList;
     private ArrayList<Figure> blackFiguresList;
@@ -29,7 +30,6 @@ public class Board extends JPanel {
     boolean isWhitesTurn = true;
     InformationBoard infoBoard;
     Field collisionField;
-
     private boolean isSelected = false;
 
     public Board() throws IOException {
@@ -43,6 +43,7 @@ public class Board extends JPanel {
 
         BoardListener boardlistener = new BoardListener();
         arrayBoard = new Field[8][8];
+        virtualBoard = new Figure[8][8];
         destroyedFiguresList = new ArrayList<>();
         blackFiguresList = new ArrayList<>();
         whiteFiguresList = new ArrayList<>();
@@ -52,7 +53,7 @@ public class Board extends JPanel {
 
         for (int yCord = 0; yCord < arrayBoard.length; yCord++) {
             for (int xCord = 0; xCord < arrayBoard.length; xCord++) {
-
+                Figure figure = null;
                 Field field = new Field(this, black, xCord, yCord);
 
                 field.addActionListener(boardlistener);
@@ -68,29 +69,21 @@ public class Board extends JPanel {
                     switch (xCord) {
                         case 0:
                         case 7:
-                            Rook rook = new Rook(xCord, yCord, true, field);
-                            field.setFigure(rook);
+                            figure = new Rook(xCord, yCord, true, field);
                             break;
                         case 1:
                         case 6:
-                            Knight knight = new Knight(xCord, yCord, true, field);
-                            field.setFigure(knight);
+                            figure = new Knight(xCord, yCord, true, field);
                             break;
                         case 2:
                         case 5:
-                            Bishop bishop = new Bishop(xCord, yCord, true, field);
-                            field.setFigure(bishop);
-                            //Laeufer
+                            figure = new Bishop(xCord, yCord, true, field);
                             break;
                         case 3:
-                            Queen queen = new Queen(xCord, yCord, true, field);
-                            field.setFigure(queen);
-                            //Queen
+                            figure = new Queen(xCord, yCord, true, field);
                             break;
                         default:
-                            King king = new King(xCord, yCord, true, field);
-                            field.setFigure(king);
-                            // King
+                            figure = new King(xCord, yCord, true, field);
                             break;
                     }
                 } else if (yCord == 6) {
@@ -100,35 +93,31 @@ public class Board extends JPanel {
                     switch (xCord) {
                         case 0:
                         case 7:
-                            Rook rook = new Rook(xCord, yCord, false, field);
-                            field.setFigure(rook);
+                            figure = new Rook(xCord, yCord, false, field);
                             break;
                         case 1:
                         case 6:
-                            Knight knight = new Knight(xCord, yCord, false, field);
-                            field.setFigure(knight);
+                            figure = new Knight(xCord, yCord, false, field);
                             break;
                         case 2:
                         case 5:
-                            Bishop bishop = new Bishop(xCord, yCord, false, field);
-                            field.setFigure(bishop);
-                            //Laeufer
+                            figure = new Bishop(xCord, yCord, false, field);
                             break;
                         case 3:
-                            Queen queen = new Queen(xCord, yCord, false, field);
-                            field.setFigure(queen);
-                            //Queen
+                            figure = new Queen(xCord, yCord, false, field);
                             break;
                         default:
-                            King king = new King(xCord, yCord, false, field);
-                            field.setFigure(king);
-                            // King
+                            figure = new King(xCord, yCord, false, field);
                             break;
                     }
                 }
-
                 this.add(field);
-
+                if (figure != null) {
+                    virtualBoard[xCord][yCord] = figure;
+                    field.setFigure(figure);
+                }
+                
+                figure = null;
                 if (field.getFigure() != null) {
                     if (field.getFigure().getIsBlack()) {
                         blackFiguresList.add(field.getFigure());
@@ -168,9 +157,11 @@ public class Board extends JPanel {
             printActivePlayer();
 
             /*
-             * Executed when a pushed friendly unit is on it or the field is empty and no unit is selected
+             * Executed when a pushed friendly unit is on it
+             * or the field is empty and no unit is selected
              */
-            if (field.getFigure() != null && isWhitesTurn != field.getFigure().getIsBlack()) {
+            if (field.getFigure() != null && isWhitesTurn 
+                    != field.getFigure().getIsBlack()) {
                 this.setCheckedFalse();
                 this.removeMarker();
                 oldField = field;
@@ -190,10 +181,12 @@ public class Board extends JPanel {
                 for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
                     for (int xCoord = 0; xCoord < arrayBoard.length; xCoord++) {
                         Field localField = arrayBoard[xCoord][yCoord];
+                        
                         if (field.getFigure().isMovePossible(localField)) {
                             if (localField.getFigure() == null) {
                                 localField.possibleHighlightOn();
-                            } else if (localField.getFigure().getIsBlack() != field.getFigure().getIsBlack()) {
+                            } else if (localField.getFigure().getIsBlack() 
+                                    != field.getFigure().getIsBlack()) {
                                 if (localField.getFigure() instanceof King) {
                                     localField.checkHighlightOn();
                                 } else {
@@ -204,45 +197,54 @@ public class Board extends JPanel {
                     }
                 }
                 oldField.selectionHighlightOn();
-            } /*
+            }
+            
+            /*
              * Executed when a unit is selected and the pushed field is valid
-             */ else if (isSelected && oldField.getFigure().isMoveValid(field)) {
+             */  
+            else if (isSelected && oldField.getFigure().isMoveValid(field)) {
+                
                 this.removeMarker();
+                isSelected = false;
                 if (field.getFigure() != null) {
                     destroyedFiguresList.add(field.getFigure());
                 }
-                oldField.getFigure().removeTexture();
                 if (oldField.getFigure() instanceof Pawn) {
                     Pawn localPawn = (Pawn) oldField.getFigure();
                     localPawn.setWasMoved(true);
                 }
-
-                field.setFigure(oldField.getFigure());
-                oldField.removeFigure();
-                isSelected = false;
+                
+                this.moveFigure(oldField, field);
 
                 System.out.println(Arrays.toString(destroyedFiguresList.toArray()));
 
-                this.setCheckedFields(whiteFiguresList, false);
-                this.setCheckedFields(blackFiguresList, true);
                 if (isWhitesTurn) {
-                    if (!this.checkCheckmated(true)) {
+                    this.setCheckedFields(whiteFiguresList, false);
+                    if (!this.checkChecked(true)) {
                         System.out.println("Player White won!");
-                        System.exit(0);
+                        pauseGame("Player White won!");
                     }
                 } else {
-                    if (!this.checkCheckmated(false)) {
+                    this.setCheckedFields(blackFiguresList, true);
+                    if (!this.checkChecked(false)) {
                         System.out.println("Player Black won!");
-                        System.exit(0);
+                        pauseGame("Player Black won!");
                     }
                 }
                 isWhitesTurn = !isWhitesTurn;
+                CheckmatedChecker cmc = new CheckmatedChecker(virtualBoard);
             }
         }
 
         /*
          * Helpermethod, which removes all markers
          */
+        
+        private void moveFigure(Field oldField, Field newField) {
+            oldField.getFigure().removeTexture();
+            newField.setFigure(oldField.getFigure());
+            oldField.removeFigure();
+        }
         private void removeMarker() {
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
                 for (int xCoord = 0; xCoord < arrayBoard.length; xCoord++) {
@@ -303,7 +305,7 @@ public class Board extends JPanel {
             }
         }
 
-        private boolean checkCheckmated(boolean blackKing) {
+        private boolean checkChecked(boolean blackKing) {
             King king = null;
             if (blackKing) {
                 for (Figure figure : blackFiguresList) {
@@ -360,5 +362,14 @@ public class Board extends JPanel {
             System.out.println("It's Black's turn!");
         }
     }
+    
+    public void pauseGame(String text) {
+            for (int y = 0; y < arrayBoard.length; y++) {
+                for (int x = 0; x < arrayBoard.length; x++) {
+                    Field field = arrayBoard[x][y];
+                    field.setEnabled(false);
+                }
+            }
+        }
 
 }

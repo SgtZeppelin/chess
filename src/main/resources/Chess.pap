@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FRAME GUID="2FB25471-B62C-4EE6-BD43-F819C095ACF8" FORMAT="0000" APP_VERSION="2.2.0.8" CHECKSUM="4D81071E0710F6E7">
+  <PROJECT FORMAT="1.00" NAME="Chess" AUTHOR="sgtzeppelin" CREATED="2018.06.17 12:16:35" MODIFIED="2018.06.17 14:49:28">
+    <DIAGRAMS>
+      <DIAGRAM FORMAT="1.00" ID="0" NAME="Chess" CREATED="2018.06.17 12:16:50" MODIFIED="2018.06.17 14:20:25">
+        <LAYOUT FORMAT="1.00" COLUMNS="13" ROWS="15">
+          <ENTRIES>
+            <ENTRY COLUMN="0" ROW="2">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="209">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="10">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="203">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="2">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="145">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="4">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="96">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="6">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="160">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="7">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="162">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="8">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="169">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="9">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="173">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="11">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="194">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="12">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="197">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="14">
+              <FIGURE SUBTYPE="PapEnd" FORMAT="1.00" ID="2">
+                <TEXT><![CDATA[End]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="6">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="153">
+                <TEXT><![CDATA[Add figure to the destroyedFiguresList]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="8">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="158">
+                <TEXT><![CDATA[Set moved true]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="10">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="201">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="11">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="184">
+                <TEXT><![CDATA[Is black king checkmated?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="12">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="192">
+                <TEXT><![CDATA[Is white king checkmated?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="13">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="212">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="11">
+              <FIGURE SUBTYPE="PapModule" FORMAT="1.00" ID="181">
+                <TEXT><![CDATA[Set white's checked fields]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="12">
+              <FIGURE SUBTYPE="PapModule" FORMAT="1.00" ID="187">
+                <TEXT><![CDATA[Set black's checked fields]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="4">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="93">
+                <TEXT><![CDATA[Was a field selected and is new selected field a valid move?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="5">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="149">
+                <TEXT><![CDATA[Set default settings and selected false]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="6">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="151">
+                <TEXT><![CDATA[Has selected field a figure?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="7">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="166">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="8">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="156">
+                <TEXT><![CDATA[Is moving figure a pawn?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="9">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="176">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="10">
+              <FIGURE SUBTYPE="PapModule" FORMAT="1.00" ID="171">
+                <TEXT><![CDATA[Move Figure]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="11">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="179">
+                <TEXT><![CDATA[Is whites turn?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="12">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="189">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="0" ANCHOR="True">
+              <FIGURE SUBTYPE="PapTitle" FORMAT="1.00" ID="0">
+                <TEXT><![CDATA[Chess]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="1">
+              <FIGURE SUBTYPE="PapStart" FORMAT="1.00" ID="1">
+                <TEXT><![CDATA[Start]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="2">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="142">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="3">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="4">
+                <TEXT><![CDATA[Select field]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="4">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="6">
+                <TEXT><![CDATA[Has selected field figure from right team?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="5">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="22">
+                <TEXT><![CDATA[Set default settings and set selected true]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="6">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="24">
+                <TEXT><![CDATA[Has selected field a king?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="7">
+              <FIGURE SUBTYPE="PapLoopStart" FORMAT="1.00" ID="44" ASSOCIATE="45">
+                <TEXT><![CDATA[Go through 2d array of all fields]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="8">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="53">
+                <TEXT><![CDATA[Can the selected figure move to field?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="9">
+              <FIGURE SUBTYPE="PapLoopEnd" FORMAT="1.00" ID="45" ASSOCIATE="44">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="10">
+              <FIGURE SUBTYPE="PapOutput" FORMAT="1.00" ID="88">
+                <TEXT><![CDATA[Mark selected field with selected color]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="5" ROW="12">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="106">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="6" ROW="6">
+              <FIGURE SUBTYPE="PapOutput" FORMAT="1.00" ID="40">
+                <TEXT><![CDATA[Display from enemy team checked fields]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="6" ROW="8">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="55">
+                <TEXT><![CDATA[is there a figure on the field?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="6" ROW="9">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="66">
+                <TEXT><![CDATA[Is figure from enemy team?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="7" ROW="6">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="48">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="7" ROW="7">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="50">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="8" ROW="8">
+              <FIGURE SUBTYPE="PapOutput" FORMAT="1.00" ID="59">
+                <TEXT><![CDATA[Mark field with possible move color]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="8" ROW="9">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="68">
+                <TEXT><![CDATA[Is enemy figure a king?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="8" ROW="11">
+              <FIGURE SUBTYPE="PapOutput" FORMAT="1.00" ID="71">
+                <TEXT><![CDATA[Mark field with collision color]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="9" ROW="7">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="63">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="9" ROW="8">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="61">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="10" ROW="9">
+              <FIGURE SUBTYPE="PapOutput" FORMAT="1.00" ID="70">
+                <TEXT><![CDATA[Mark field with check color]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="11" ROW="7">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="78">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="11" ROW="9">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="74">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="11" ROW="11">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="85">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="12" ROW="2">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="140">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="12" ROW="12">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="119">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="12" ROW="13">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="214">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+          </ENTRIES>
+        </LAYOUT>
+        <CONNECTIONS>
+          <CONNECTION FORMAT="1.00" ID="143" FROM="142" TO="4" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="5" FROM="4" TO="6" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="42" FROM="22" TO="24" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="95" FROM="6" TO="93" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="41" FROM="6" TO="22" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="43" FROM="24" TO="40" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="46" FROM="44" TO="53" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="47" FROM="24" TO="44" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="49" FROM="40" TO="48" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="51" FROM="48" TO="50" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="52" FROM="50" TO="44" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="54" FROM="53" TO="45" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="56" FROM="53" TO="55" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="62" FROM="59" TO="61" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="58" FROM="55" TO="59" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="64" FROM="61" TO="63" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="65" FROM="63" TO="50" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="67" FROM="55" TO="66" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="69" FROM="66" TO="68" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="72" FROM="68" TO="71" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="73" FROM="68" TO="70" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="75" FROM="70" TO="74" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="80" FROM="78" TO="63" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="77" FROM="74" TO="78" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="82" FROM="71" TO="85" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="87" FROM="85" TO="74" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="89" FROM="45" TO="88" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="147" FROM="145" TO="142" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="97" FROM="93" TO="96" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="99" FROM="96" TO="145" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="105" FROM="88" TO="106" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="3" FROM="1" TO="142" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="109" FROM="106" TO="119" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="122" FROM="119" TO="140" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="144" FROM="140" TO="142" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="150" FROM="93" TO="149" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="152" FROM="149" TO="151" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="154" FROM="151" TO="153" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="157" FROM="151" TO="166" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="164" FROM="156" TO="158" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="161" FROM="153" TO="160" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="163" FROM="160" TO="162" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="167" FROM="166" TO="156" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="168" FROM="162" TO="166" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="170" FROM="158" TO="169" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="172" FROM="156" TO="176" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="174" FROM="169" TO="173" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="177" FROM="176" TO="171" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="178" FROM="173" TO="176" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="183" FROM="179" TO="181" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="185" FROM="181" TO="184" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="190" FROM="179" TO="189" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="191" FROM="189" TO="187" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="193" FROM="187" TO="192" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="195" FROM="184" TO="194" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="198" FROM="197" TO="2" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="196" FROM="194" TO="197" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="199" FROM="192" TO="197" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="202" FROM="184" TO="201" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="204" FROM="201" TO="203" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="206" FROM="203" TO="209" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="211" FROM="209" TO="145" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="213" FROM="192" TO="212" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="215" FROM="212" TO="214" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="216" FROM="214" TO="119" TEXT="" />
+        </CONNECTIONS>
+      </DIAGRAM>
+      <DIAGRAM FORMAT="1.00" ID="1" NAME="checkInterruptCheckmated" CREATED="2018.06.17 14:22:26" MODIFIED="2018.06.17 14:22:26">
+        <LAYOUT FORMAT="1.00" COLUMNS="4" ROWS="9">
+          <ENTRIES>
+            <ENTRY COLUMN="0" ROW="0" ANCHOR="True">
+              <FIGURE SUBTYPE="PapTitle" FORMAT="1.00" ID="0">
+                <TEXT><![CDATA[checkInterruptCheckmated]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="1">
+              <FIGURE SUBTYPE="PapStart" FORMAT="1.00" ID="1">
+                <TEXT><![CDATA[Start]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="2">
+              <FIGURE SUBTYPE="PapLoopStart" FORMAT="1.00" ID="4" ASSOCIATE="6">
+                <TEXT><![CDATA[Go through arraylist from affected team]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="3">
+              <FIGURE SUBTYPE="PapLoopStart" FORMAT="1.00" ID="8" ASSOCIATE="10">
+                <TEXT><![CDATA[Go through array of fields]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="4">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="12">
+                <TEXT><![CDATA[Is move possible?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="5">
+              <FIGURE SUBTYPE="PapLoopEnd" FORMAT="1.00" ID="10" ASSOCIATE="8">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="6">
+              <FIGURE SUBTYPE="PapLoopEnd" FORMAT="1.00" ID="6" ASSOCIATE="4">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="7">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="22">
+                <TEXT><![CDATA[return false]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="8">
+              <FIGURE SUBTYPE="PapEnd" FORMAT="1.00" ID="2">
+                <TEXT><![CDATA[End]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="4">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="15">
+                <TEXT><![CDATA[Move to position]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="4">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="14">
+                <TEXT><![CDATA[Is king still checkmated?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="5">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="18">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="4">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="21">
+                <TEXT><![CDATA[return true]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+          </ENTRIES>
+        </LAYOUT>
+        <CONNECTIONS>
+          <CONNECTION FORMAT="1.00" ID="3" FROM="1" TO="4" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="7" FROM="6" TO="22" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="5" FROM="4" TO="8" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="11" FROM="10" TO="6" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="9" FROM="8" TO="12" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="13" FROM="12" TO="10" TEXT="false" />
+          <CONNECTION FORMAT="1.00" ID="16" FROM="12" TO="15" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="17" FROM="15" TO="14" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="19" FROM="14" TO="18" TEXT="true" />
+          <CONNECTION FORMAT="1.00" ID="20" FROM="18" TO="10" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="23" FROM="22" TO="2" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="24" FROM="14" TO="21" TEXT="false" />
+        </CONNECTIONS>
+      </DIAGRAM>
+    </DIAGRAMS>
+  </PROJECT>
+</FRAME>

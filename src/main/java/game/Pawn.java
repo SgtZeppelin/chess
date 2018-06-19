@@ -9,7 +9,7 @@ package game;
  *
  * @author gersc
  */
-public class Pawn extends Figure {
+public class Pawn extends Figure implements java.io.Serializable {
 
     private boolean wasMoved = false;
 
@@ -30,15 +30,8 @@ public class Pawn extends Figure {
         return wasMoved;
     }
 
-
-
     @Override
-    protected boolean checkTarget(Field field) {
-
-        int lastX = this.field.getXCord();
-        int lastY = this.field.getYCord();
-        int newX = field.getXCord();
-        int newY = field.getYCord();
+    protected boolean checkTarget(int lastX, int newX, int lastY, int newY) {
         int resultX = lastX - newX;
 
         if (isBlack) {
@@ -79,10 +72,7 @@ public class Pawn extends Figure {
     }
 
     @Override
-    protected boolean checkCollision(Field field) {
-        int lastX = this.field.getXCord();
-        int lastY = this.field.getYCord();
-        int newY = field.getYCord();
+    protected boolean checkCollision(int lastX, int newX, int lastY, int newY) {
 
         if ((newY - lastY == 2) || (newY - lastY == -2)) {
             Field[][] arrayField = this.getField().getBoard().getArrayChessBoard();
@@ -103,7 +93,8 @@ public class Pawn extends Figure {
 
     private boolean checkEnemyField(int lastX, int newX, Field newField) {
         if (newField.getFigure() != null) {
-            if ((newX == lastX + 1 || newX == lastX - 1) && newField.getFigure().getIsBlack() != this.field.getFigure().getIsBlack()) {
+            if ((newX == lastX + 1 || newX == lastX - 1) 
+                    && newField.getFigure().getIsBlack() != this.field.getFigure().getIsBlack()) {
                 return true;
             }
         }

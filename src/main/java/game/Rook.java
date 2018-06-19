@@ -9,7 +9,7 @@ package game;
  *
  * @author gersc
  */
-public class Rook extends Figure {
+public class Rook extends Figure implements java.io.Serializable {
 
     boolean moved = false;
 
@@ -23,12 +23,7 @@ public class Rook extends Figure {
         }
     }
     @Override
-    protected boolean checkTarget( Field field ) {
-        
-        int lastX = this.field.getXCord();
-        int lastY = this.field.getYCord();
-        int newX = field.getXCord();
-        int newY = field.getYCord();
+    protected boolean checkTarget(int lastX, int newX, int lastY, int newY) {
         
         if ( ( lastX == newX && lastY != newY ) || ( lastY == newY && lastX != newX ) ) {
             return true;
@@ -38,13 +33,8 @@ public class Rook extends Figure {
     }
     
     @Override
-    protected boolean checkCollision( Field field ) {
-        
-        int lastX = this.field.getXCord();
-        int lastY = this.field.getYCord();
-        int newX = field.getXCord();
-        int newY = field.getYCord();
-        
+    protected boolean checkCollision(int lastX, int newX, int lastY, int newY) {
+
         Field[][] arrayField = this.getField().getBoard().getArrayChessBoard();
         
         if ( lastX == newX ) {

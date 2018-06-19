@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author gersc
  */
-public class King extends Figure {
+public class King extends Figure implements java.io.Serializable {
 
     public King(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
@@ -25,27 +25,31 @@ public class King extends Figure {
 
     @Override
     public boolean isMovePossible(Field field) {
-        if (this.checkTarget(field) && field != this.field ) {
+        int lastX = this.field.getXCord();
+        int lastY = this.field.getYCord();
+        int newX = field.getXCord();
+        int newY = field.getYCord();
+        if (this.checkTarget(lastX, newX, lastY, newY) && field != this.field ) {
             if (field.getFigure() != null) {
                 if (field.getFigure().getIsBlack() != this.getIsBlack()) {
                     if (this.getIsBlack()) {
                         if (!field.isCheckedByWhite()) {
-                            return this.checkCollision(field);
+                            return this.checkCollision(lastX, newX, lastY, newY);
                         }
                     } else {
                         if (!field.isCheckedByBlack()) {
-                            return this.checkCollision(field);
+                            return this.checkCollision(lastX, newX, lastY, newY);
                         }
                     }
                 }
             } else {
                 if (this.getIsBlack()) {
                     if (!field.isCheckedByWhite()) {
-                        return this.checkCollision(field);
+                        return this.checkCollision(lastX, newX, lastY, newY);
                     }
                 } else {
                     if (!field.isCheckedByBlack()) {
-                        return this.checkCollision(field);
+                        return this.checkCollision(lastX, newX, lastY, newY);
                     }
                 }
             }
@@ -56,14 +60,19 @@ public class King extends Figure {
 
     @Override
     public boolean isMoveValid(Field field) {
-        if (this.checkTarget(field) && !(field.getFigure() instanceof King)) {
+        int lastX = this.field.getXCord();
+        int lastY = this.field.getYCord();
+        int newX = field.getXCord();
+        int newY = field.getYCord();
+        if (this.checkTarget(lastX, newX, lastY, newY) 
+            && !(field.getFigure() instanceof King)) {
             if (this.getIsBlack()) {
                 if (!field.isCheckedByWhite()) {
-                    return this.checkCollision(field);
+                    return this.checkCollision(lastX, newX, lastY, newY);
                 }
             } else {
                 if (!field.isCheckedByBlack()) {
-                    return this.checkCollision(field);
+                    return this.checkCollision(lastX, newX, lastY, newY);
                 }
             }
         }
@@ -71,11 +80,7 @@ public class King extends Figure {
     }
 
     @Override
-    protected boolean checkTarget(Field field) {
-        int lastX = this.field.getXCord();
-        int lastY = this.field.getYCord();
-        int newX = field.getXCord();
-        int newY = field.getYCord();
+    protected boolean checkTarget(int lastX, int newX, int lastY, int newY) {
         int resultX;
         int resultY;
 
@@ -98,7 +103,7 @@ public class King extends Figure {
     }
 
     @Override
-    protected boolean checkCollision(Field field) {
+    protected boolean checkCollision(int lastX, int newX, int lastY, int newY) {
         return true;
     }
 }
