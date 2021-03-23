@@ -1,6 +1,9 @@
 US001 - As a player, I would like to be able to play against the computer so that I can play when there's nobody else around.
+
 Task001.1 - Determine method for choosing which piece computer will move.
+
 Task001.2 - Determine method for choosing which move computer will make.
+
 Task001.3 - Demonstrate computer moving a piece.
 
 US002 - As a player, I would like the ability to change pawns to another piece when they reach the other side of the board so that the game follows the normal rules of chess.
@@ -18,6 +21,9 @@ US007 - As a player, I would like to be able to choose the number of players at 
 US008 - As a player, I would like to be able to edit the player name so that I can see who is playing.
 
 US009 - As a developer, I would like the code to have formatted documentation so that it is easier to maintain.
+
 Task009.1 - Configure the Doxyfile
+
 Task009.2 - Add ability to add links in documentation to relevant tasks
+
 Task009.3 - Add ability to link tasks to relevant User Stories
