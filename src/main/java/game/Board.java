@@ -6,6 +6,8 @@
 package game;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +33,8 @@ public class Board extends JPanel {
     Field collisionField;
 
     private boolean isSelected = false;
+    
+    JFrame movesFrame = new JFrame("No. of Moves");
 
     public Board() throws IOException {
 
@@ -151,6 +155,8 @@ public class Board extends JPanel {
         /*
          * Executed when a field is pressed
          */
+        int noOfMovesBlack = 0;
+        int noOfMovesWhite = 0;
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
@@ -208,6 +214,7 @@ public class Board extends JPanel {
              * Executed when a unit is selected and the pushed field is valid
              */ else if (isSelected && oldField.getFigure().isMoveValid(field)) {
                 this.removeMarker();
+                this.noOfMoves();
                 if (field.getFigure() != null) {
                     destroyedFiguresList.add(field.getFigure());
                 }
@@ -347,7 +354,21 @@ public class Board extends JPanel {
 
             return true;
         }
+        private void noOfMoves(){
+            int whiteTurn=noOfMovesWhite;
+            int blackTurn=noOfMovesBlack;
+            
+            newFrame(whiteTurn,blackTurn);
+        }
     }
+    private void newFrame(int whiteTurn,int blackTurn){
+            try{
+                movesFrame.setSize(400,400);
+                movesFrame.setVisible(true);
+            }catch(Exception e){
+                System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
+            }
+        }
 
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
