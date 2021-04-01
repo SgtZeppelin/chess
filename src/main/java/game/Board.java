@@ -35,7 +35,8 @@ public class Board extends JPanel {
     private boolean isSelected = false;
     
     JFrame movesFrame = new JFrame("No. of Moves");
-
+    JLabel label = new JLabel();
+    
     public Board() throws IOException {
 
         this.initBoard();
@@ -357,18 +358,30 @@ public class Board extends JPanel {
         private void noOfMoves(){
             int whiteTurn=noOfMovesWhite;
             int blackTurn=noOfMovesBlack;
-            
+            if(isWhitesTurn){
+                ++noOfMovesWhite;
+                whiteTurn = noOfMovesWhite;
+                System.out.println("Total Number of moves by white = "+noOfMovesWhite);
+                
+            }else{
+                ++noOfMovesBlack;
+                blackTurn = noOfMovesBlack;
+                System.out.println("Total Number of moves by black = "+noOfMovesBlack);
+            }
             newFrame(whiteTurn,blackTurn);
         }
     }
     private void newFrame(int whiteTurn,int blackTurn){
             try{
+                label.setText("Black:  "+blackTurn+"    "+"White:  "+whiteTurn);
+                label.setBounds(50,50, 150,20);
+                movesFrame.add(label);
                 movesFrame.setSize(400,400);
                 movesFrame.setVisible(true);
             }catch(Exception e){
                 System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
             }
-        }
+    }
 
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
