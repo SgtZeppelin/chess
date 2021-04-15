@@ -387,7 +387,14 @@ public class Board extends JPanel {
                 resetButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
+                        try{
+                            ++r;
+                            if(r==1){
+                                newGameFrame.newGame();
+                            }
+                        }catch(Exception ex){
+                            System.out.println("Exception occured in reset button "+ex.getMessage());
+                        }
                     }
                 });
                 movesFrame.add(resetButton);
