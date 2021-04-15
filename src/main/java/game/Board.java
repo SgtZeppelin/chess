@@ -391,6 +391,7 @@ public class Board extends JPanel {
                             ++r;
                             if(r==1){
                                 newGameFrame.newGame();
+                                movesFrame.setVisible(false);
                             }
                         }catch(Exception ex){
                             System.out.println("Exception occured in reset button "+ex.getMessage());
