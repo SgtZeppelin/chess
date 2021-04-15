@@ -27,13 +27,16 @@ public class Board extends JPanel {
     int saveYCoord;
     int saveXCoord;
     boolean isWhitesTurn = true;
+    boolean onePlayer;
     InformationBoard infoBoard;
     Field collisionField;
+    Opponent opponent = null;
 
     private boolean isSelected = false;
 
-    public Board() throws IOException {
+    public Board(boolean onePlayer) throws IOException {
 
+        this.onePlayer = onePlayer;
         this.initBoard();
     }
 
@@ -46,6 +49,10 @@ public class Board extends JPanel {
         destroyedFiguresList = new ArrayList<>();
         blackFiguresList = new ArrayList<>();
         whiteFiguresList = new ArrayList<>();
+        
+        if(onePlayer) {
+            opponent = new Opponent(arrayBoard);
+        }
 
         this.setLayout(new java.awt.GridLayout(8, 8));
         boolean black = true;
@@ -210,6 +217,12 @@ public class Board extends JPanel {
                 this.removeMarker();
                 if (field.getFigure() != null) {
                     destroyedFiguresList.add(field.getFigure());
+                    if(field.getFigure().isBlack) {
+                        blackFiguresList.remove(field.getFigure());
+                    }
+                    else {
+                        whiteFiguresList.remove(field.getFigure());
+                    }
                 }
                 oldField.getFigure().removeTexture();
                 if (oldField.getFigure() instanceof Pawn) {
@@ -236,7 +249,16 @@ public class Board extends JPanel {
                         System.exit(0);
                     }
                 }
-                isWhitesTurn = !isWhitesTurn;
+                
+                //if playing against computer, have them takeTurn
+                if(onePlayer) {
+                    opponent.takeTurn(blackFiguresList, whiteFiguresList);
+                }
+                //otherwise, switch which player's turn it is
+                else {
+                    isWhitesTurn = !isWhitesTurn;
+                }
+                
             }
         }
 
@@ -283,7 +305,7 @@ public class Board extends JPanel {
                         Field field = arrayBoard[xCoord][yCoord];
                         if (figure.isMovePossible(field)) {
                             if (black) {
-                                field.setCheckedByBlack(true);
+                                field.setCheckedByBlack(true); 
                             } else {
                                 field.setCheckedByWhite(true);
                             }
