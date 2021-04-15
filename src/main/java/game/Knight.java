@@ -10,7 +10,14 @@ package game;
  * @author gersc
  */
 public class Knight extends Figure {
-
+    
+    /** My Constructor.
+     * @param x it sets x coordinate.
+     * @param y it sets y coordinate.
+     * @param black true if black.
+     * @param field to display knight on a board.
+     * Change icons for knight_black and knight_white.
+     */
     public Knight(int x, int y, boolean black, Field field ) {
         super(x, y, black, field);
         if (black) {

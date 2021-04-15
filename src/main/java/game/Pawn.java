@@ -12,7 +12,14 @@ package game;
 public class Pawn extends Figure {
 
     private boolean wasMoved = false;
-
+    
+    /** My Constructor.
+     * @param x it sets x coordinate.
+     * @param y it sets y coordinate.
+     * @param black true if black.
+     * @param field to display pawn on a board.
+     * Change icons for pawn_black and pawn_white.
+     */
     public Pawn(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
         if (isBlack) {

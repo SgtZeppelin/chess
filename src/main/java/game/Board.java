@@ -34,8 +34,10 @@ public class Board extends JPanel {
 
     private boolean isSelected = false;
     
-    JFrame movesFrame = new JFrame("No. of Moves");
-    JLabel label = new JLabel();
+    JFrame movesFrame = new JFrame("No. of Moves");  /**<New Frame for counter and reset functionality.*/
+    JLabel label = new JLabel(); /**<Label for printing moves counter.*/
+    JButton resetButton=new JButton("Reset"); /**<Reset button object created.*/
+    int r=0; /**<Default data member r for some logic in the code.*/
     
     public Board() throws IOException {
 
@@ -45,7 +47,7 @@ public class Board extends JPanel {
     private void initBoard() {
 
         this.setSize(800, 800);
-
+        
         BoardListener boardlistener = new BoardListener();
         arrayBoard = new Field[8][8];
         destroyedFiguresList = new ArrayList<>();
@@ -156,8 +158,9 @@ public class Board extends JPanel {
         /*
          * Executed when a field is pressed
          */
-        int noOfMovesBlack = 0;
-        int noOfMovesWhite = 0;
+        int noOfMovesBlack = 0; /**<Data member to count no. of moves by black.*/
+        int noOfMovesWhite = 0; /**<Data member to count no. of moves by white.*/
+         
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
@@ -173,7 +176,6 @@ public class Board extends JPanel {
             }
 
             printActivePlayer();
-
             /*
              * Executed when a pushed friendly unit is on it or the field is empty and no unit is selected
              */
@@ -215,7 +217,7 @@ public class Board extends JPanel {
              * Executed when a unit is selected and the pushed field is valid
              */ else if (isSelected && oldField.getFigure().isMoveValid(field)) {
                 this.removeMarker();
-                this.noOfMoves();
+                this.noOfMoves();  /**<Number of moves function called.*/
                 if (field.getFigure() != null) {
                     destroyedFiguresList.add(field.getFigure());
                 }
@@ -257,7 +259,7 @@ public class Board extends JPanel {
                     Field localField = arrayBoard[xCoord][yCoord];
 
                     localField.setStandartColor();
-
+                    
                 }
             }
         }
@@ -355,6 +357,8 @@ public class Board extends JPanel {
 
             return true;
         }
+        
+                 
         private void noOfMoves(){
             int whiteTurn=noOfMovesWhite;
             int blackTurn=noOfMovesBlack;
@@ -370,19 +374,14 @@ public class Board extends JPanel {
             }
             newFrame(whiteTurn,blackTurn);
         }
-    }
-    private void newFrame(int whiteTurn,int blackTurn){
-            try{
-                label.setText("Black:  "+blackTurn+"    "+"White:  "+whiteTurn);
-                label.setBounds(50,50, 150,20);
-                movesFrame.add(label);
-                movesFrame.setSize(400,400);
-                movesFrame.setVisible(true);
-            }catch(Exception e){
-                System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
-            }
+        
     }
 
+    
+    private void newFrame(int whiteTurn,int blackTurn){
+            
+    }
+    
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
     }
@@ -394,5 +393,4 @@ public class Board extends JPanel {
             System.out.println("It's Black's turn!");
         }
     }
-
 }
