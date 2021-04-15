@@ -36,8 +36,8 @@ public class Board extends JPanel {
     
     JFrame movesFrame = new JFrame("No. of Moves");  /**<New Frame for counter and reset functionality.*/
     JLabel label = new JLabel(); /**<Label for printing moves counter.*/
-    JButton resetButton=new JButton("Reset"); /**<Reset button object created.*/
-    int r=0; /**<Default data member r for some logic in the code.*/
+    //JButton resetButton=new JButton("Reset"); /**<Reset button object created.*/
+    //int r=0; /**<Default data member r for some logic in the code.*/
     
     public Board() throws IOException {
 
@@ -379,7 +379,7 @@ public class Board extends JPanel {
 
     
     private void newFrame(int whiteTurn,int blackTurn){
-            
+        
     }
     
     public Field[][] getArrayChessBoard() {
