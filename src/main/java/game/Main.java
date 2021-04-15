@@ -32,7 +32,8 @@ public class Main extends JFrame {
         }
         
         public void newGame() throws Exception{
-            
+            Main main = new Main();
+            main.setVisible(true);
         }
         
         public static void main(String[] args) {
