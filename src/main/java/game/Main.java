@@ -31,6 +31,10 @@ public class Main extends JFrame {
             this.setLocationRelativeTo( null );
         }
         
+        public void newGame() throws Exception{
+            
+        }
+        
         public static void main(String[] args) {
             EventQueue.invokeLater(() -> {
                 Main main = new Main();
