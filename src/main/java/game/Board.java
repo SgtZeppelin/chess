@@ -379,10 +379,23 @@ public class Board extends JPanel {
 
     
     private void newFrame(int whiteTurn,int blackTurn){
-        movesFrame.add(resetButton);
-        movesFrame.add(label);
-        movesFrame.setSize(400,400);
-        movesFrame.setVisible(true);
+            try{
+                label.setText("Black:  "+blackTurn+"    "+"White:  "+whiteTurn);
+                label.setBounds(50,50, 150,20);
+                resetButton.setBounds(50,250,95,30);
+                resetButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        
+                    }
+                });
+                movesFrame.add(resetButton);
+                movesFrame.add(label);
+                movesFrame.setSize(400,400);
+                movesFrame.setVisible(true);
+            }catch(Exception e){
+                System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
+            }
     }
     
     public Field[][] getArrayChessBoard() {
