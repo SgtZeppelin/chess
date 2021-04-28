@@ -30,12 +30,13 @@ public class Opponent {
     ///and then move that piece
     public void takeTurn(ArrayList<Figure> computerPieces, ArrayList<Figure> playerPieces) {
         this.playerPieces = playerPieces;
-        choosePieceToMove(computerPieces);
+        determineMoveablePieces(computerPieces);
+        choosePieceToMove();
     }
     
     /// \imp \ref T1_3
     /// The computer player must be able to move their pieces to a new position
-    private void move(Figure piece, int newXCoord, int newYCoord) {
+    public void move(Figure piece, int newXCoord, int newYCoord) {
         Field oldField = piece.getField();
         System.out.println("Computer moving piece at " + oldField.getXCord() + ", " + oldField.getYCord());
         System.out.println("Moving to " + newXCoord + ", " + newYCoord);
@@ -55,13 +56,7 @@ public class Opponent {
     ///2. It will try to take an opponent's piece, if possible.
     ///3. It will try to protect it's own pieces, if possible.
     ///4. It will move randomly if it cannot do any of the above.
-    private void choosePieceToMove(ArrayList<Figure> pieces) {
-        moveablePieces.clear(); 
-        for(Figure piece : pieces) {
-            if(canMove(piece)) {
-                moveablePieces.add(piece);
-            }
-        }
+    public void choosePieceToMove() {
         
         if(isInCheck(board)) {
             escapeCheck();
@@ -69,7 +64,7 @@ public class Opponent {
         }
         
         for(Figure piece : moveablePieces) {
-            if(canTakeOpponentPiece(piece)) {
+            if(canTakePlayerPiece(piece)) {
                 return;
             }
         }
@@ -84,9 +79,18 @@ public class Opponent {
         return;
     }
     
+    public void determineMoveablePieces(ArrayList<Figure> pieces) {
+        moveablePieces.clear();
+        for(Figure piece : pieces) {
+            if(canMove(piece)) {
+                moveablePieces.add(piece);
+            }
+        }
+    }
+    
     ///\ref T1_1 The computer player has to be able to determine if the piece is
     ///able to move before it can decide which piece to move
-    private boolean canMove(Figure piece) {
+    public boolean canMove(Figure piece) {
         for (int xCoord = 0; xCoord < board.length; xCoord++) {
             for(int yCoord = 0; yCoord < board[xCoord].length; yCoord++) {
                 Field localField = board[xCoord][yCoord];
@@ -100,7 +104,7 @@ public class Opponent {
     ///\ref T1_1 \ref T1_2 
     ///In order to make the correct move, the computer player
     ///must be able to determine whether or not it is currently in check
-    private boolean isInCheck(Field[][] board) {
+    public boolean isInCheck(Field[][] board) {
         for(Figure piece : playerPieces) {
             for (int xCoord = 0; xCoord < board.length; xCoord++) {
                 for(int yCoord = 0; yCoord < board[xCoord].length; yCoord++) {
@@ -118,7 +122,7 @@ public class Opponent {
     ///\ref T1_1 \ref T1_2 
     ///In order to choose the correct piece and position to a move,
     ///the computer player must first attempt to escape from being in check
-    private void escapeCheck() {
+    public void escapeCheck() {
         for(Figure piece : moveablePieces) {
             for (int xCoord = 0; xCoord < board.length; xCoord++) {
                 for(int yCoord = 0; yCoord < board[xCoord].length; yCoord++) {
@@ -157,7 +161,7 @@ public class Opponent {
     ///\ref T1_1 
     ///The computer player has to determine if a piece is able to take one of the  
     ///player's pieces in order to choose which piece to move
-    private boolean canTakeOpponentPiece(Figure piece) {
+    public boolean canTakePlayerPiece(Figure piece) {
         for (int xCoord = 0; xCoord < board.length; xCoord++) {
             for(int yCoord = 0; yCoord < board[xCoord].length; yCoord++) {
                 Field localField = board[xCoord][yCoord];
@@ -172,7 +176,7 @@ public class Opponent {
     
     ///\ref T1_1 The computer player has to determine if a piece is able to escape 
     ///being taken by the player in order to choose which piece to move
-    private boolean canEscapeFromBeingTaken(Figure piece) {
+    public boolean canEscapeFromBeingTaken(Figure piece) {
         for(Figure playerPiece : playerPieces) {
             if(playerPiece.isMovePossible(piece.getField())) {
                 for (int xCoord = 0; xCoord < board.length; xCoord++) {
@@ -182,7 +186,8 @@ public class Opponent {
                             move(piece, xCoord, yCoord);
                             return true;
                         }
-                    }    }
+                    }    
+                }
             }
         }
         return false;
@@ -191,7 +196,7 @@ public class Opponent {
     ///\ref T1_1 
     ///If none of the other conditions are met, the computer player still has to 
     ///choose a piece, so it will choose a random piece to move
-    private void randomPiece() {
+    public void randomPiece() {
         Figure piece = moveablePieces.get((int)(Math.random() * moveablePieces.size()));
         for (int xCoord = 0; xCoord < board.length; xCoord++) {
             for(int yCoord = 0; yCoord < board[xCoord].length; yCoord++) {
@@ -202,5 +207,8 @@ public class Opponent {
                 }
             }
         }    
+    }
+    public void setPlayerPieces(ArrayList<Figure> playerPieces) {
+        this.playerPieces = playerPieces;
     }
 }
