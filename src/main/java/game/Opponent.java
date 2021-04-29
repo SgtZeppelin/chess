@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /// \imp \ref T1_1 \ref T1_2 \ref T1_3
@@ -47,6 +48,7 @@ public class Opponent {
         oldField.getFigure().removeTexture();
         newField.setFigure(piece);
         oldField.removeFigure();
+        highlightMove(oldField, newField);
     }
     
     ///\imp \ref T1_1 \ref T1_2
@@ -212,5 +214,12 @@ public class Opponent {
     }
     public void setPlayerPieces(ArrayList<Figure> playerPieces) {
         this.playerPieces = playerPieces;
+    }
+    
+    ///\ref 10_1 \ref 10_2 Computer player will highlight the starting and ending
+    ///spaces of its previous move so that the player can see which piece moved where
+    public void highlightMove(Field oldField, Field newField) {
+        oldField.setBackground(Color.ORANGE);
+        newField.setBackground(Color.ORANGE);
     }
 }
