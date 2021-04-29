@@ -13,6 +13,13 @@ import java.util.ArrayList;
  */
 public class King extends Figure {
 
+    /** My Constructor.
+     * @param x it sets x coordinate.
+     * @param y it sets y coordinate.
+     * @param black true if black.
+     * @param field to display king on a board.
+     * Change icons for king_black and king_white.
+     */
     public King(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
         if (black) {

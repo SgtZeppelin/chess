@@ -39,14 +39,13 @@ public class Board extends JPanel {
     JLabel label = new JLabel(); /**<Label for printing moves counter.*/
     JButton resetButton=new JButton("Reset"); /**<Reset button object created.*/
     JLabel timeLabel = new JLabel("Timer"); /**<Label for a timer.*/
-    int r=0; /**<Default data member r for some logic in the code.*/    
+    int r=0; /**<Default data member r for some logic in the code.*/
     int second=0; /**<Data member for seconds count. */
     int minute=30;/**<Data member for minutes count.*/
     String dfseconds, dfminutes; /**<Data members use for formating.*/
     
     Timer timer; /**<Reference variable for timer */
-
-
+    
     public Board() throws IOException {
 
         this.initBoard();
@@ -168,7 +167,7 @@ public class Board extends JPanel {
          */
         int noOfMovesBlack = 0; /**<Data member to count no. of moves by black.*/
         int noOfMovesWhite = 0; /**<Data member to count no. of moves by white.*/
-
+         
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
@@ -382,8 +381,10 @@ public class Board extends JPanel {
             }
             newFrame(whiteTurn,blackTurn);
         }
+        
     }
 
+    
     private void newFrame(int whiteTurn,int blackTurn){
             Main newGameFrame = new Main();
             try{
@@ -398,6 +399,7 @@ public class Board extends JPanel {
                             ++r;
                             if(r==1){
                                 newGameFrame.newGame();
+                                timer.stop();
                                 movesFrame.setVisible(false);
                             }
                         }catch(Exception ex){
@@ -410,11 +412,13 @@ public class Board extends JPanel {
                 movesFrame.add(label);
                 movesFrame.setSize(400,400);
                 movesFrame.setVisible(true);
+                timer();
+                timer.start();
             }catch(Exception e){
                 System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
             }
     }
-
+    
     private void timer(){
         DecimalFormat df = new DecimalFormat("00");
         timer = new Timer(1000,new ActionListener(){
@@ -440,7 +444,6 @@ public class Board extends JPanel {
             
         });
     }
-    
     
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
