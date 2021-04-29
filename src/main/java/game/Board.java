@@ -6,7 +6,10 @@
 package game;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
@@ -31,6 +34,18 @@ public class Board extends JPanel {
     Field collisionField;
 
     private boolean isSelected = false;
+    
+    JFrame movesFrame = new JFrame("No. of Moves");  /**<New Frame for counter and reset functionality.*/
+    JLabel label = new JLabel(); /**<Label for printing moves counter.*/
+    JButton resetButton=new JButton("Reset"); /**<Reset button object created.*/
+    JLabel timeLabel = new JLabel("Timer"); /**<Label for a timer.*/
+    int r=0; /**<Default data member r for some logic in the code.*/    
+    int second=0; /**<Data member for seconds count. */
+    int minute=30;/**<Data member for minutes count.*/
+    String dfseconds, dfminutes; /**<Data members use for formating.*/
+    
+    Timer timer; /**<Reference variable for timer */
+
 
     public Board() throws IOException {
 
@@ -40,7 +55,7 @@ public class Board extends JPanel {
     private void initBoard() {
 
         this.setSize(800, 800);
-
+        
         BoardListener boardlistener = new BoardListener();
         arrayBoard = new Field[8][8];
         destroyedFiguresList = new ArrayList<>();
@@ -151,6 +166,9 @@ public class Board extends JPanel {
         /*
          * Executed when a field is pressed
          */
+        int noOfMovesBlack = 0; /**<Data member to count no. of moves by black.*/
+        int noOfMovesWhite = 0; /**<Data member to count no. of moves by white.*/
+
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
@@ -166,7 +184,6 @@ public class Board extends JPanel {
             }
 
             printActivePlayer();
-
             /*
              * Executed when a pushed friendly unit is on it or the field is empty and no unit is selected
              */
@@ -208,6 +225,7 @@ public class Board extends JPanel {
              * Executed when a unit is selected and the pushed field is valid
              */ else if (isSelected && oldField.getFigure().isMoveValid(field)) {
                 this.removeMarker();
+                this.noOfMoves();  /**<Number of moves function called.*/
                 if (field.getFigure() != null) {
                     destroyedFiguresList.add(field.getFigure());
                 }
@@ -249,7 +267,7 @@ public class Board extends JPanel {
                     Field localField = arrayBoard[xCoord][yCoord];
 
                     localField.setStandartColor();
-
+                    
                 }
             }
         }
@@ -347,8 +365,61 @@ public class Board extends JPanel {
 
             return true;
         }
+        
+                 
+        private void noOfMoves(){
+            int whiteTurn=noOfMovesWhite;
+            int blackTurn=noOfMovesBlack;
+            if(isWhitesTurn){
+                ++noOfMovesWhite;
+                whiteTurn = noOfMovesWhite;
+                System.out.println("Total Number of moves by white = "+noOfMovesWhite);
+                
+            }else{
+                ++noOfMovesBlack;
+                blackTurn = noOfMovesBlack;
+                System.out.println("Total Number of moves by black = "+noOfMovesBlack);
+            }
+            newFrame(whiteTurn,blackTurn);
+        }
     }
 
+    private void newFrame(int whiteTurn,int blackTurn){
+            Main newGameFrame = new Main();
+            try{
+                label.setText("Black:  "+blackTurn+"    "+"White:  "+whiteTurn);
+                label.setBounds(50,50, 150,20);
+                resetButton.setBounds(50,250,95,30);
+                timeLabel.setBounds(50, 50, 200, 100);
+                resetButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try{
+                            ++r;
+                            if(r==1){
+                                newGameFrame.newGame();
+                                movesFrame.setVisible(false);
+                            }
+                        }catch(Exception ex){
+                            System.out.println("Exception occured in reset button "+ex.getMessage());
+                        }
+                    }
+                });
+                movesFrame.add(timeLabel);
+                movesFrame.add(resetButton);
+                movesFrame.add(label);
+                movesFrame.setSize(400,400);
+                movesFrame.setVisible(true);
+            }catch(Exception e){
+                System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
+            }
+    }
+
+    private void timer(){
+        
+    }
+    
+    
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
     }
@@ -360,5 +431,4 @@ public class Board extends JPanel {
             System.out.println("It's Black's turn!");
         }
     }
-
 }
