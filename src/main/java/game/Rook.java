@@ -12,12 +12,18 @@ package game;
 public class Rook extends Figure {
 
     boolean moved = false;
-
+    /** My Constructor.
+     * @param x it sets x coordinate.
+     * @param y it sets y coordinate.
+     * @param black true if black.
+     * @param field to display rook on a board.
+     * Change icons for rook_black and rook_white.
+     */
     public Rook(int x, int y, boolean black, Field field) {
         super(x, y, black, field);
         if (black) {
             imagePath = "/rook_black.png";
-
+            
         } else {
             imagePath = "/rook_white.png";
         }
