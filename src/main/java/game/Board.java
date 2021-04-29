@@ -416,7 +416,26 @@ public class Board extends JPanel {
     }
 
     private void timer(){
-        
+        timer = new Timer(1000,new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                second--;
+                if(second==-1){
+                    second=59;
+                    minute--;
+                    timeLabel.setText(dfminutes+":"+dfseconds);
+                }
+                else{
+                    timeLabel.setText(dfminutes+":"+dfseconds);
+                }
+                if(minute==0 && second==0){
+                    timer.stop();
+                    System.out.println("Time out!! Game Over.");
+                    System.exit(0);
+                }
+            }
+            
+        });
     }
     
     
