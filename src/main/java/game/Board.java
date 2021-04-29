@@ -154,8 +154,9 @@ public class Board extends JPanel {
         /*
          * Executed when a field is pressed
          */
-        
-         
+        int noOfMovesBlack = 0; /**<Data member to count no. of moves by black.*/
+        int noOfMovesWhite = 0; /**<Data member to count no. of moves by white.*/
+
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
             for (int yCoord = 0; yCoord < arrayBoard.length; yCoord++) {
@@ -356,10 +357,14 @@ public class Board extends JPanel {
                  
         private void noOfMoves(){
             System.out.println("Moves function");
+            
         }
     }
 
+    private void newFrame(int whiteTurn,int blackTurn){
+        System.out.println("Function add new frame");
     
+    }
     
     
     
