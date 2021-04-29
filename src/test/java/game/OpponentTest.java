@@ -5,6 +5,7 @@
  */
 package game;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -343,6 +344,35 @@ public class OpponentTest {
             Field pawnEnd = pawn.getField();
             //exactly one of the pieces is moved
             assertTrue((rookStart != rookEnd && pawnStart == pawnEnd) || (pawnStart != pawnEnd && rookStart == rookEnd));
+            
+            tearDown();
+        } catch(Exception e) {
+            fail(e);
+        }
+    }
+    
+    ///\ref T10_1 \ref T10_2
+    public void testHighlightMove() {
+        try {
+            setUp();
+            
+            //fields are not orange before highlight, are orange after it
+            assertFalse(boardPositions[0][0].getBackground() == Color.ORANGE);
+            assertFalse(boardPositions[0][1].getBackground() == Color.ORANGE);
+            opponent.highlightMove(boardPositions[0][0], boardPositions[0][1]);
+            assertTrue(boardPositions[0][0].getBackground() == Color.ORANGE);
+            assertTrue(boardPositions[0][1].getBackground() == Color.ORANGE);
+        
+            Figure queen = new Queen(1, 1, true, boardPositions[1][1]);
+            boardPositions[1][1].setFigure(queen);
+            
+            //before move, fields are not orange. after move they are
+            assertFalse(boardPositions[1][1].getBackground() == Color.ORANGE);
+            assertFalse(boardPositions[2][2].getBackground() == Color.ORANGE);
+            opponent.move(queen, 2, 2);
+            
+            assertTrue(boardPositions[1][1].getBackground() == Color.ORANGE);
+            assertTrue(boardPositions[2][2].getBackground() == Color.ORANGE);
             
             tearDown();
         } catch(Exception e) {
