@@ -35,6 +35,9 @@ public class Board extends JPanel {
 
     private boolean isSelected = false;
     
+    JFrame movesFrame = new JFrame("No. of Moves");  /**<New Frame for counter and reset functionality.*/
+    JLabel label = new JLabel(); /**<Label for printing moves counter.*/
+
     public Board() throws IOException {
 
         this.initBoard();
@@ -356,12 +359,16 @@ public class Board extends JPanel {
         
                  
         private void noOfMoves(){
+            int whiteTurn=noOfMovesWhite;
+            int blackTurn=noOfMovesBlack;
             System.out.println("Moves function");
-            
+            newFrame(whiteTurn,blackTurn);
         }
     }
 
     private void newFrame(int whiteTurn,int blackTurn){
+        
+
         System.out.println("Function add new frame");
     
     }
