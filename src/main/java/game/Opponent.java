@@ -79,6 +79,8 @@ public class Opponent {
         return;
     }
     
+    ///\ref T1_1 The computer player must know all pieces that are able to be
+    ///moved in order to correctly choose which piece it will move
     public void determineMoveablePieces(ArrayList<Figure> pieces) {
         moveablePieces.clear();
         for(Figure piece : pieces) {
