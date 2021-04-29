@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
@@ -33,11 +34,6 @@ public class Board extends JPanel {
     Field collisionField;
 
     private boolean isSelected = false;
-    
-    JFrame movesFrame = new JFrame("No. of Moves");  /**<New Frame for counter and reset functionality.*/
-    JLabel label = new JLabel(); /**<Label for printing moves counter.*/
-    JButton resetButton=new JButton("Reset"); /**<Reset button object created.*/
-    int r=0; /**<Default data member r for some logic in the code.*/
     
     public Board() throws IOException {
 
@@ -158,8 +154,7 @@ public class Board extends JPanel {
         /*
          * Executed when a field is pressed
          */
-        int noOfMovesBlack = 0; /**<Data member to count no. of moves by black.*/
-        int noOfMovesWhite = 0; /**<Data member to count no. of moves by white.*/
+        
          
         public void actionPerformed(java.awt.event.ActionEvent event) {
 
@@ -360,52 +355,14 @@ public class Board extends JPanel {
         
                  
         private void noOfMoves(){
-            int whiteTurn=noOfMovesWhite;
-            int blackTurn=noOfMovesBlack;
-            if(isWhitesTurn){
-                ++noOfMovesWhite;
-                whiteTurn = noOfMovesWhite;
-                System.out.println("Total Number of moves by white = "+noOfMovesWhite);
-                
-            }else{
-                ++noOfMovesBlack;
-                blackTurn = noOfMovesBlack;
-                System.out.println("Total Number of moves by black = "+noOfMovesBlack);
-            }
-            newFrame(whiteTurn,blackTurn);
+            System.out.println("Moves function");
         }
-        
     }
 
     
-    private void newFrame(int whiteTurn,int blackTurn){
-            Main newGameFrame = new Main();
-            try{
-                label.setText("Black:  "+blackTurn+"    "+"White:  "+whiteTurn);
-                label.setBounds(50,50, 150,20);
-                resetButton.setBounds(50,250,95,30);
-                resetButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try{
-                            ++r;
-                            if(r==1){
-                                newGameFrame.newGame();
-                                movesFrame.setVisible(false);
-                            }
-                        }catch(Exception ex){
-                            System.out.println("Exception occured in reset button "+ex.getMessage());
-                        }
-                    }
-                });
-                movesFrame.add(resetButton);
-                movesFrame.add(label);
-                movesFrame.setSize(400,400);
-                movesFrame.setVisible(true);
-            }catch(Exception e){
-                System.out.println("Exception Occured! Something is wrong in new Frame.. "+e.getMessage());
-            }
-    }
+    
+    
+    
     
     public Field[][] getArrayChessBoard() {
         return arrayBoard;
